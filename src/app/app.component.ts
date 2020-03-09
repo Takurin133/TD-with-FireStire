@@ -20,6 +20,11 @@ export class AppComponent {
       title: 'タスク一覧',
       url: '/tasks',
       icon: 'list'
+    },
+    {
+      title: 'タスク詳細',
+      url: '/detail',
+      icon: 'list'
     }
   ];
 

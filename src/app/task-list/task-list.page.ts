@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -13,6 +14,7 @@ export class TaskListPage implements OnInit {
   ];
   constructor(
     public actionSheetController: ActionSheetController,
+    public router: Router,
     public alertController: AlertController,
   ) { }
 
@@ -51,6 +53,13 @@ export class TaskListPage implements OnInit {
             console.log('Cancel clicked');
           }
         },
+        {
+          text: '詳細',
+          icon: 'create',
+          handler: () => {
+            this.router.navigateByUrl('/article');
+          }
+      },
       ]
     });
     actionSheet.present();
