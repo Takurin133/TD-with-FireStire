@@ -24,10 +24,10 @@ export class AppComponent {
     {
       title: 'タスク詳細',
       url: '/detail',
-      icon: 'list'
+      icon: 'logo-angular'
     }
   ];
-
+  dark = false;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

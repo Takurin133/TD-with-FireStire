@@ -53,13 +53,13 @@ export class TaskListPage implements OnInit {
             console.log('Cancel clicked');
           }
         },
-        {
-          text: '詳細',
-          icon: 'create',
-          handler: () => {
-            this.router.navigateByUrl('/article');
-          }
-      },
+      //   {
+      //     text: '詳細',
+      //     icon: 'arrow-forward-outline',
+      //     handler: () => {
+      //       this.router.navigateByUrl('/article');
+      //     }
+      // },
       ]
     });
     actionSheet.present();

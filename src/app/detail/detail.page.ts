@@ -10,6 +10,7 @@ export class DetailPage implements OnInit {
     { name: 'タスク１' },
     { name: 'タスク２' },
   ];
+  clickedItem: number;
   constructor() { }
 
   ngOnInit() {
@@ -20,4 +21,7 @@ export class DetailPage implements OnInit {
       this.tasks = JSON.parse(localStorage.tasks);
     }
   }
+  // Detail(t, $index){
+  //   this.clickedItem = $index;
+  // }
 }

@@ -3,15 +3,21 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>タスク一覧</ion-title>
+    <ion-title>タスク詳細</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let t of tasks; let i = index" [button]="true"
-              (click)="changeTask(i)">
-      <ion-label>{{t.name}}</ion-label>
-    </ion-item>
+    <!-- <ion-item *ngFor="let t of tasks; let i = index" [button]="true"
+              (click)="changeTask(i)" routerLink="/article{{i}}"> -->
+              <div class="container list-group">
+                <ion-card color="dark">
+                <a button="true" *ngFor="let t of tasks; let i = index" routerLink="/article/article{{i}}" href="javascript:void(0);">
+                  <ion-label>{{t.name}}   /</ion-label>
+                </a>
+                <br>
+                </ion-card>
+              </div>
   </ion-list>
 </ion-content>
