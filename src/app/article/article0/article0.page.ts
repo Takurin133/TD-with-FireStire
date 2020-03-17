@@ -15,14 +15,37 @@ export class Article0Page implements OnInit {
     public actionSheetController: ActionSheetController,
     public alertController: AlertController) { }
 
-  ngOnInit() {
-  }
-  ionViewWillEnter() {
-    if ('missons0' in localStorage) {
-      this.missions0 = JSON.parse(localStorage.missions0);
-      this.gaps0 = JSON.parse(localStorage.gaps0);
-      this.details0 = JSON.parse(localStorage.details0);
+    ngOnInit(){
+      console.log('ngOnInit');
+      console.log(localStorage.missions0);
+      localStorage.missions0 = JSON.stringify(this.missions0);
+      localStorage.gaps0 = JSON.stringify(this.gaps0);
+      localStorage.details0 = JSON.stringify(this.details0);
+      if (localStorage.missions0 ) {
+        console.log('ngOnInit2');
+        this.missions0 = JSON.parse(localStorage.missions0);
+        // missions.mission(↑のmissionsの中のmissionキーを参照する)
+        this.gaps0 = JSON.parse(localStorage.gaps0);
+        this.details0 = JSON.parse(localStorage.details0);
+      }else{
+        console.log('no missions') // for debug
+      }
     }
+ ngDoCheck() {
+    if (localStorage.missions0) {
+      console.log('compleate')
+      this.missions0 = JSON.parse(localStorage.missions0);
+      if ('gaps0' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        this.gaps0 = JSON.parse(localStorage.gaps0);
+        // this.details = JSON.parse(localStorage.details);
+      }
+      if ('details0' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        // this.gaps = JSON.parse(localStorage.gaps);
+        this.details0 = JSON.parse(localStorage.details0);
+      }
+    } 
   }
 
   async changeMission() {

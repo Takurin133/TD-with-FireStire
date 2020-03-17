@@ -13,9 +13,12 @@ export class HomePage {
   ];
   task: string;
   constructor() {}
-
+//  ngOnInit(){
+//    console.log(this.tasks);
+//  }
   ionViewWillEnter() {
     if ('tasks' in localStorage) {
+      console.log('task 追加　in this page');
       this.tasks = JSON.parse(localStorage.tasks);
     }
   }
@@ -24,7 +27,9 @@ export class HomePage {
     this.tasks.push({
       name: this.task
     });
+    console.log('tasks push');
     localStorage.tasks = JSON.stringify(this.tasks);
+    console.log('task 空');
     this.task = '';
   }
 }

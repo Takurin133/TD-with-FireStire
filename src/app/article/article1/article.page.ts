@@ -5,7 +5,7 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
   templateUrl: './article.page.html',
   styleUrls: ['./article.page.scss'],
 })
-export class ArticlePage implements OnInit {
+export class ArticlePage  {
   missions: { mission: string } =  { mission: 'mission1' };
   gaps: { gap: string } =  { gap: 'gap1' };
   details: { detail: string } =  { detail: 'detail1' };
@@ -14,11 +14,27 @@ export class ArticlePage implements OnInit {
     public actionSheetController: ActionSheetController,
     public alertController: AlertController) { }
 
-  ngOnInit() {
-  }
-  ionViewWillEnter() {
-    if ('missons' in localStorage) {
+  ngOnInit(){
+    console.log('ngOnInit');
+    localStorage.missions = JSON.stringify(this.missions);
+    localStorage.gaps = JSON.stringify(this.gaps);
+    localStorage.details = JSON.stringify(this.details);
+    console.log(localStorage.missions);
+    if (localStorage.missions ) {
+      console.log('ngOnInit2');
       this.missions = JSON.parse(localStorage.missions);
+      // missions.mission(↑のmissionsの中のmissionキーを参照する)
+      // this.gaps = JSON.parse(localStorage.gaps);
+      // this.details = JSON.parse(localStorage.details);
+    }else{
+      console.log('no missions') // for debug
+    }
+  }
+    ngDoCheck() {
+    if ('missons' in localStorage) {
+      console.log('ionViewwillEmter')
+      this.missions = JSON.parse(localStorage.missions);
+      // missions.mission(↑のmissionsの中のmissionキーを参照する)
       // this.gaps = JSON.parse(localStorage.gaps);
       // this.details = JSON.parse(localStorage.details);
     }
@@ -119,7 +135,9 @@ export class ArticlePage implements OnInit {
           text: '保存',
           handler: data => {
             this.missions = { mission: data.mission };
-            localStorage.missions = JSON.stringify(this.missions);
+            console.log(this.missions.mission);
+            localStorage.missions = JSON.stringify(this.missions); // missions.mission?
+            console.log('missions　追加');
           }
         }
       ]

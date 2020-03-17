@@ -7,21 +7,44 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
 })
 export class Article4Page implements OnInit {
   missions4: { mission4: string } =  { mission4: 'mission1' };
-  gaps4: { gap4: string } =  { gap4:'gap1' };
-  details4: { detail4: string } =  { detail4: 'detail１' };
+  gaps4: { gap4: string } =  { gap4: 'gap1' };
+  details4: { detail4: string } =  { detail4: 'detail4' };
 
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController) { }
 
-  ngOnInit() {
-  }
-  ionViewWillEnter() {
-    if ('missons4' in localStorage) {
-      this.missions4 = JSON.parse(localStorage.missions4);
-      this.gaps4 = JSON.parse(localStorage.gaps4);
-      this.details4 = JSON.parse(localStorage.details4);
+    ngOnInit(){
+      console.log('ngOnInit');
+      localStorage.missions4 = JSON.stringify(this.missions4);
+      localStorage.gaps4 = JSON.stringify(this.gaps4);
+      localStorage.details4 = JSON.stringify(this.details4);
+      console.log(localStorage.missions4);
+      if (localStorage.missions4 ) {
+        console.log('ngOnInit2');
+        this.missions4 = JSON.parse(localStorage.missions4);
+        // missions.mission(↑のmissionsの中のmissionキーを参照する)
+        this.gaps4 = JSON.parse(localStorage.gaps4);
+        this.details4 = JSON.parse(localStorage.details4);
+      }else{
+        console.log('no missions') // for debug
+      }
     }
+ ngDoCheck() {
+    if ('missons4' in localStorage) {
+      // console.log('compleate')
+      this.missions4 = JSON.parse(localStorage.missions4);
+      if ('gaps4' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        this.gaps4 = JSON.parse(localStorage.gaps4);
+        // this.details = JSON.parse(localStorage.details);
+      }
+      if ('details4' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        // this.gaps = JSON.parse(localStorage.gaps);
+        this.details4 = JSON.parse(localStorage.details4);
+      }
+    } 
   }
 
   async changeMission() {

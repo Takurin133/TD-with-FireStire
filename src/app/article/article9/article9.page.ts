@@ -6,22 +6,45 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
   styleUrls: ['./article9.page.scss'],
 })
 export class Article9Page implements OnInit {
-  missions9: { mission9: string } =  { mission9: 'mission1' };
-  gaps9: { gap9: string } =  { gap9: 'gap1' };
-  details9: { detail9: string } =  { detail9: 'detail１' };
+  missions9: { mission9: string } =  { mission9: 'mission9' };
+  gaps9: { gap9: string } =  { gap9: 'gap9' };
+  details9: { detail9: string } =  { detail9: 'detail9' };
 
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController) { }
 
-  ngOnInit() {
-  }
-  ionViewWillEnter() {
-    if ('missons9' in localStorage) {
-      this.missions9 = JSON.parse(localStorage.missions9);
-      this.gaps9 = JSON.parse(localStorage.gaps9);
-      this.details9 = JSON.parse(localStorage.details9);
+    ngOnInit(){
+      console.log('ngOnInit');
+      localStorage.missions9 = JSON.stringify(this.missions9);
+      localStorage.gaps9 = JSON.stringify(this.gaps9);
+      localStorage.details9 = JSON.stringify(this.details9);
+      console.log(localStorage.missions9);
+      if (localStorage.missions9 ) {
+        console.log('ngOnInit2');
+        this.missions9 = JSON.parse(localStorage.missions9);
+        // missions.mission(↑のmissionsの中のmissionキーを参照する)
+        this.gaps9 = JSON.parse(localStorage.gaps9);
+        this.details9 = JSON.parse(localStorage.details9);
+      }else{
+        console.log('no missions'); // for debug
+      }
     }
+ ngDoCheck() {
+    if ('missons9' in localStorage) {
+      console.log('compleate')
+      this.missions9 = JSON.parse(localStorage.missions9);
+      if ('gaps9' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        this.gaps9 = JSON.parse(localStorage.gaps9);
+        // this.details = JSON.parse(localStorage.details);
+      }
+      if ('details0' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        // this.gaps = JSON.parse(localStorage.gaps);
+        this.details9 = JSON.parse(localStorage.details9);
+      }
+    } 
   }
 
   async changeMission() {

@@ -23,6 +23,7 @@ export class TaskListPage implements OnInit {
 
   ionViewWillEnter() {
     if ('tasks' in localStorage) {
+      console.log('tasks 追加');
       this.tasks = JSON.parse(localStorage.tasks);
     }
   }
