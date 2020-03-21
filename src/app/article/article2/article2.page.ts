@@ -5,7 +5,7 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
   templateUrl: './article2.page.html',
   styleUrls: ['./article2.page.scss'],
 })
-export class Article2Page implements OnInit {
+export class Article2Page {
   missions2: { mission2: string } =  { mission2: 'mission2' };
   gaps2: { gap2: string } =  { gap2: 'gap2' };
   details2: { detail2: string } =  { detail2: 'detail2' };
@@ -13,18 +13,27 @@ export class Article2Page implements OnInit {
   constructor(
     public actionSheetController: ActionSheetController,
     public alertController: AlertController) { }
+
     ngOnInit(){
       console.log('ngOnInit');
-      localStorage.missions2 = JSON.stringify(this.missions2);
-      localStorage.gaps2 = JSON.stringify(this.gaps2);
-      localStorage.details2 = JSON.stringify(this.details2);
+      // localStorage.missions2 = JSON.stringify(this.missions2);
+      // localStorage.gaps2 = JSON.stringify(this.gaps2);
+      // localStorage.details2 = JSON.stringify(this.details2);
       console.log(localStorage.missions2);
       if (localStorage.missions2 ) {
         console.log('ngOnInit2');
         this.missions2 = JSON.parse(localStorage.missions2);
         // missions.mission(↑のmissionsの中のmissionキーを参照する)
-        this.gaps2 = JSON.parse(localStorage.gaps2);
-        this.details2 = JSON.parse(localStorage.details2);
+        if ('gaps2' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          this.gaps2 = JSON.parse(localStorage.gaps2);
+          // this.details = JSON.parse(localStorage.details);
+        }
+        if ('details2' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          // this.gaps = JSON.parse(localStorage.gaps);
+          this.details2 = JSON.parse(localStorage.details2);
+        }
       }else{
         console.log('no missions') // for debug
       }

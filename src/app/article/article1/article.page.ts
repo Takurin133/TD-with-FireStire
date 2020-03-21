@@ -16,15 +16,25 @@ export class ArticlePage  {
 
   ngOnInit(){
     console.log('ngOnInit');
-    localStorage.missions = JSON.stringify(this.missions);
-    localStorage.gaps = JSON.stringify(this.gaps);
-    localStorage.details = JSON.stringify(this.details);
+    // localStorage.missions = JSON.stringify(this.missions);
+    // localStorage.gaps = JSON.stringify(this.gaps);
+    // localStorage.details = JSON.stringify(this.details);
     console.log(localStorage.missions);
     if (localStorage.missions ) {
       console.log('ngOnInit2');
       this.missions = JSON.parse(localStorage.missions);
       // missions.mission(↑のmissionsの中のmissionキーを参照する)
-      // this.gaps = JSON.parse(localStorage.gaps);
+     
+      if ('gaps' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        this.gaps = JSON.parse(localStorage.gaps);
+        // this.details = JSON.parse(localStorage.details);
+      }
+      if ('details' in localStorage) {
+        // this.missions = JSON.parse(localStorage.missions);
+        // this.gaps = JSON.parse(localStorage.gaps);
+        this.details = JSON.parse(localStorage.details);
+      }      // this.gaps = JSON.parse(localStorage.gaps);
       // this.details = JSON.parse(localStorage.details);
     }else{
       console.log('no missions') // for debug

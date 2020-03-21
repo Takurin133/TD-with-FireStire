@@ -16,16 +16,24 @@ export class Article4Page implements OnInit {
 
     ngOnInit(){
       console.log('ngOnInit');
-      localStorage.missions4 = JSON.stringify(this.missions4);
-      localStorage.gaps4 = JSON.stringify(this.gaps4);
-      localStorage.details4 = JSON.stringify(this.details4);
+      // localStorage.missions4 = JSON.stringify(this.missions4);
+      // localStorage.gaps4 = JSON.stringify(this.gaps4);
+      // localStorage.details4 = JSON.stringify(this.details4);
       console.log(localStorage.missions4);
       if (localStorage.missions4 ) {
         console.log('ngOnInit2');
         this.missions4 = JSON.parse(localStorage.missions4);
         // missions.mission(↑のmissionsの中のmissionキーを参照する)
-        this.gaps4 = JSON.parse(localStorage.gaps4);
-        this.details4 = JSON.parse(localStorage.details4);
+        if ('gaps4' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          this.gaps4 = JSON.parse(localStorage.gaps4);
+          // this.details = JSON.parse(localStorage.details);
+        }
+        if ('details4' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          // this.gaps = JSON.parse(localStorage.gaps);
+          this.details4 = JSON.parse(localStorage.details4);
+        }
       }else{
         console.log('no missions') // for debug
       }
@@ -179,7 +187,7 @@ export class Article4Page implements OnInit {
         {
           text: '保存',
           handler: data => {
-            this.details4 = { detail4: data.detail };
+            this.details4 = { detail4: data.detail4 };
             localStorage.details4 = JSON.stringify(this.details4);
           }
         }

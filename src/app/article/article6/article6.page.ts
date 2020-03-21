@@ -17,16 +17,24 @@ export class Article6Page implements OnInit {
     ngOnInit(){
       console.log('ngOnInit');
       console.log(this.gaps6);
-      localStorage.missions6 = JSON.stringify(this.missions6);
-      localStorage.gaps6 = JSON.stringify(this.gaps6);
-      localStorage.details6 = JSON.stringify(this.details6);
+      // localStorage.missions6 = JSON.stringify(this.missions6);
+      // localStorage.gaps6 = JSON.stringify(this.gaps6);
+      // localStorage.details6 = JSON.stringify(this.details6);
       console.log(localStorage.missions6);
       if (localStorage.missions6 ) {
         console.log('ngOnInit2');
         this.missions6 = JSON.parse(localStorage.missions6);
         // missions.mission(↑のmissionsの中のmissionキーを参照する)
-        this.gaps6 = JSON.parse(localStorage.gaps6);
-        this.details6 = JSON.parse(localStorage.details6);
+        if ('gaps6' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          this.gaps6 = JSON.parse(localStorage.gaps6);
+          // this.details = JSON.parse(localStorage.details);
+        }
+        if ('details6' in localStorage) {
+          // this.missions = JSON.parse(localStorage.missions);
+          // this.gaps = JSON.parse(localStorage.gaps);
+          this.details6 = JSON.parse(localStorage.details6);
+        }
       }else{
         console.log('no missions') // for debug
       }
