@@ -5,9 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import {ModalPage} from '../modal/modal.page'
+import { ModalPageModule } from '../modal/modal.module';
 
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
+  
   imports: [
+    MatExpansionModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -18,6 +23,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ModalPage],
+  entryComponents:[ModalPage]
 })
 export class HomePageModule {}

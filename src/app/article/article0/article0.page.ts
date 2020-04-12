@@ -128,9 +128,15 @@ export class Article0Page {
       inputs: [
         {
           name: 'mission0',
+          // type: 'text',
           placeholder: 'ミッション',
           value: this.missions0.mission0
         },
+        // {
+        //   name: 'name1',
+        //   type: 'text',
+        //   placeholder: 'Placeholder 1'
+        // },
       ],
       buttons: [
         {

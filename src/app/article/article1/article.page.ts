@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.page.html',
@@ -10,12 +13,44 @@ export class ArticlePage  {
   gaps: { gap: string } =  { gap: 'gap1' };
   details: { detail: string } =  { detail: 'detail1' };
 
+  // todocollection: AngularFirestoreCollection<Todo>;
+  // todos: Todo[];
+
+  // todo: Todo= { mission:''}
+
   constructor(
     public actionSheetController: ActionSheetController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    public db: AngularFirestore) { }
 
   ngOnInit(){
     console.log('ngOnInit');
+    // // とりあえず全件取得
+    // this.todocollection = this.db.collection<Todo>('todos', ref => ref);
+    // // 変更あればデータ更新
+    // const todosObservable = this.todocollection.snapshotChanges().pipe(
+    //   map(actions => {
+    //     return actions.map(a => {
+    //       const data = a.payload.doc.data();
+    //       const id = a.payload.doc.id;
+    //       return { id, ...data };
+    //     });
+    //   })
+    // );
+    // todosObservable.subscribe(todos => this.todos = todos);
+
+    // add(){
+    //   this.todocollection.add(this.todo);
+    //   this.todo = {mission:''};
+    // }
+    // remove(id: string){
+    //   this.todocollection.doc(id).delete();
+    // }
+
+    // export interface Todo {
+    //   id?: string, //firestore documentのID 
+    //   mission: string,
+    // }
     // localStorage.missions = JSON.stringify(this.missions);
     // localStorage.gaps = JSON.stringify(this.gaps);
     // localStorage.details = JSON.stringify(this.details);

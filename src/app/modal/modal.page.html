@@ -1,0 +1,22 @@
+<ion-content class="modal" (click)="close()">
+</ion-content>
+
+<ion-footer padding>
+ <div class="semi-modal-content">
+  <ion-item lines="full" class="ion-padding-bottom">
+    <ion-label position="floating">タスク</ion-label>    
+    <ion-input type="text" [(ngModel)]="todo.title"  name="todo"
+    required minlength="3" maxlength="20"></ion-input>
+  </ion-item>
+    <!-- <button ion-button icon-only (click)="down()">
+      <ion-icon name="remove"></ion-icon>
+    </button>
+    <div class="counter">
+      {{counter}}
+    </div>
+    <button ion-button icon-only (click)="up()">
+      <ion-icon name="add"></ion-icon>
+    </button> -->
+  </div>
+  <ion-button  expand="block" color="secondary" (click)="add()">Save</ion-button>
+</ion-footer>

@@ -4,25 +4,55 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      {{title}}
+      {{title1}}
     </ion-title>
+    <!-- <ion-button slot="end" shape="round" color="tertiary"fill="outline" (click)="onButtonClicked()"> -->
+      <ion-icon class="add" slot="end" name="add" color="succses" padding-end button="true" (click)="onButtonClicked()"></ion-icon>
+    <!-- </ion-button> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form class="ion-padding" (submit)="addTask()" #f="ngForm">
-    <ion-item lines="full" class="ion-padding-bottom">
-      <ion-label position="floating">タスク</ion-label>
-      <ion-input type="text" [(ngModel)]="task" name="task"
-                 required minlength="3" maxlength="20"></ion-input>
-    </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="!f.form.valid">
+  <!-- <form class="ion-padding" (submit)="addTask()" #f="ngForm"> -->
+    <!-- <ion-item lines="full" class="ion-padding-bottom">
+      <ion-label position="floating">タスク</ion-label>    
+      <ion-input type="text" [(ngModel)]="todo.title"  name="todo"
+      required minlength="3" maxlength="20"></ion-input>
+    </ion-item> -->
+    <!-- <ion-button expand="block" type="submit" [disabled]="!f.form.valid" (click)="add()">
       追加
-    </ion-button>
-  </form>
-  <ion-list>
-    <ion-item *ngFor="let t of tasks">
-      <ion-label>{{t.name}}</ion-label>
-    </ion-item>
-  </ion-list>
+    </ion-button> -->
+     <!-- <ion-button expand="block" type="submit" [disabled]="!f.form.valid" (click)="onButtonClicked()">
+      追加
+    </ion-button>  -->
+  <!-- </form>  -->
+  
+    <ng-container col-6 offset-sm-3 *ngFor="let t of todos">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label><ion-card-subtitle>{{t.title}}</ion-card-subtitle></ion-label>
+        </ion-item>
+        <ion-item-options side="start">
+          <!-- <ion-button color="danger" (click)="remove(t.id)"> 同値の上のやつと対応してます-->
+            <ion-button color="danger" (click)="remove(t)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>     
+          <ion-button color="primary" (click)="toggleEditComment(t)">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>     
+        </ion-item-options>
+      </ion-item-sliding>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p>Mission: </p>
+  <p>Gap: </p>
+  <p>Detail:</p>
+  </mat-expansion-panel>
+  </mat-accordion>
+    </ng-container>
+
 </ion-content>
