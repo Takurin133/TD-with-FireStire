@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content>
+<!-- <div *ngIf=isEdit (click)="close()"> -->
   <!-- <form class="ion-padding" (submit)="addTask()" #f="ngForm"> -->
     <!-- <ion-item lines="full" class="ion-padding-bottom">
       <ion-label position="floating">タスク</ion-label>    
@@ -34,25 +35,58 @@
             <mat-panel-title>
       <ion-item-sliding>
         <ion-item>
+          <!-- <p *ngIf="!t.isEdit" class="input-group">        -->
           <ion-label><ion-card-subtitle>{{t.title}}</ion-card-subtitle></ion-label>
+          <!-- </p> -->
+        <!-- <p *ngIf="t.isEdit" class="input-group">       
+          <ion-input size="text" class="form-control"
+          [(ngModel)]="t.title"></ion-input>
+        </p>
+         -->
         </ion-item>
-        <ion-item-options side="start">
+        <ion-item-options side="end">
           <!-- <ion-button color="danger" (click)="remove(t.id)"> 同値の上のやつと対応してます-->
             <ion-button color="danger" (click)="remove(t)">
             <ion-icon name="trash"></ion-icon>
           </ion-button>     
+        </ion-item-options>
+        <p *ngIf="!t.isEdit">
+        <ion-item-options side="start">
           <ion-button color="primary" (click)="toggleEditComment(t)">
             <ion-icon name="create"></ion-icon>
           </ion-button>     
         </ion-item-options>
+        </p>
       </ion-item-sliding>
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <p>Mission: </p>
-  <p>Gap: </p>
-  <p>Detail:</p>
+  <p *ngIf="!t.isEdit">
+  <ion-label><ion-card-subtitle>Mission: 
+    {{t.mission}}</ion-card-subtitle></ion-label>
+  <ion-label><ion-card-subtitle>Gap: {{t.gap}}</ion-card-subtitle></ion-label>
+    <ion-label><ion-card-subtitle>Detail: {{t.detail}}</ion-card-subtitle></ion-label>
+  </p>
+  <p *ngIf="t.isEdit" class="input-group"> 
+    Mission: <ion-input class="form-control"
+      [(ngModel)]="t.mission"></ion-input>
+     Gap: <ion-input class="form-control"
+      [(ngModel)]="t.gap"></ion-input>
+      Detail <ion-textarea class="form-control"
+      [(ngModel)]="t.detail"></ion-textarea>
+      <ion-icon class="save" name="add" slot="start" color="succses" padding-end button="true" (click)="save(t)"></ion-icon>
+      </p>
   </mat-expansion-panel>
   </mat-accordion>
-    </ng-container>
-
+<!-- </div> -->
+</ng-container>
+<ion-list>
+  <ion-card>
+<ion-item>
+  
+  <ion-label position="stacked">Notes</ion-label>
+    <ion-textarea style="font-size:3em;"></ion-textarea>
+ 
+</ion-item>
+</ion-card>
+</ion-list>
 </ion-content>

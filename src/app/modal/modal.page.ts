@@ -38,7 +38,7 @@ export class ModalPage{
     
     this.todocollectionRef.add(this.todo);
     this.todo = {title:''};
-    
+    this.modalCtrl.dismiss(null);
   }
     //  closeModel(){
     //   this.modalCtrl.dismiss();
